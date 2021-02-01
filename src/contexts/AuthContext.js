@@ -22,7 +22,11 @@ export function AuthProvider({ children }) {
         // this returns a promise
         // firebase notifies you 
       return auth.signInWithEmailAndPassword(email, password)
-    }
+      }
+
+      function logout() {
+        return auth.signOut()
+      }
 
       useEffect(() => {   //only want this to run once
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -35,7 +39,8 @@ export function AuthProvider({ children }) {
     const value = {
         currentUser,
         login,
-        signup
+        signup,
+        logout
         
  }
 

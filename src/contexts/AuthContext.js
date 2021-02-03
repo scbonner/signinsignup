@@ -28,22 +28,28 @@ export function AuthProvider({ children }) {
         return auth.signOut()
       }
 
+      function resetPassword(email) {
+        return auth.sendPasswordResetEmail(email)
+      }
+
       useEffect(() => {   //only want this to run once
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
-            setLoading(false)
+            setLoading("")
           })
       return unsubscribe   // this unsubscribes us from lines 20-22
     }, [])
 
-    const value = {
+    const value = {  
         currentUser,
         login,
         signup,
-        logout
+        logout,
+        resetPassword
+  // above values are functions
         
  }
-
+console.log("Hi")
      return (
       <AuthContext.Provider value={value}>
         {!loading && children}
@@ -51,6 +57,7 @@ export function AuthProvider({ children }) {
 
      ) 
  }
+ 
 
 
  export default AuthContext

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Modal, Button } from 'react-bootstrap'
 
 
-const HomePage = () => {
+const Agreement = () => {
         const [show, setShow] = useState(false);
       
         return (
@@ -19,23 +19,23 @@ const HomePage = () => {
             >
               <Modal.Header closeButton>
                 <Modal.Title id="example-custom-modal-styling-title">
-                  Terms and Conditions of Our Policies:
+                  Terms and Conditions:
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body>
-            <p>PLEASE READ THESE TERMS OF USE CAREFULLY BEFORE CONTINUING.</p>
+            <p>PLEASE READ TERMS CAREFULLY BEFORE CONTINUING.</p>
 
 
-            <p>Welcome to the VueApp community!  You are reading these Terms because you are about to be utilizing a digital experience, safety platform, mobile app, wearable technology; or one of our other products or services, all of which are part of VueApp’s Signature Platform.  You may access our platform services through a computer, mobile phone, tablet, watch, earphones or other technology, which we refer to as a “Device”.  Your carrier's normal rates and fees apply to your Device.</p>
+            <p>Welcome to the VueApp community!  You are reading these Terms because you are about to begin a digital experience, safety platform, mobile app, wearable technology; or other products and services, all of which are part of VueApp’s Signature Platform.  You can access our services through a computer, mobile phone, tablet, watch, earphones or other technology, which we refer to as a “Device”.  Your carrier's normal rates and fees apply to your Device.</p>
 
-            <p>These Terms create a legally binding agreement between you and VueApp and its affiliates (which we may refer to as “COLLABORATORS,” “we,” “us,” or “our”) regarding your use of the service platform in the United States. A few important points:</p>
+            <p>These Terms create a legally binding agreement between you and VueApp and its affiliates (which we may refer to as “COLLABORATORS,” “we,” “us,” or “our”) regarding your use of our service platform in the United States. A few important points:</p>
 
             <div>
               <ul>
-                  <li>The Terms of Our Agreement are Subject to Change.  We havee the authority to admend Terms of Agreement, on an as needed basis.  If a material change is made, we will post a notice on the Platform or send you a notification.  Read through any changes, and if you don’t agree to them, please stop using the Platform.</li>
+                  <li>The Terms of Our Agreement are Subject to Change. We have the authority to admend the Terms of Agreement policies, on an as needed basis due to reasons beyond our control. If a material change is made, we will post a notice on the Platform or send you a notification. It is your responsibility to read all changes and updates. If you don’t agree to them, please reach out or notify us of your decline in using our Platform.</li>
                   <li>If you continue to use our Platform after we notify you of changes, you will be deemed to have accepted the updated Terms, except to the extent prohibited by applicable law.</li>
                   <li>Terms of Sale.  By making any purchase with us, you also agree to the Terms of Sale.</li>
-                  <li>Privacy Policy.  Our Privacy Policy describes the collection and use of personal information on the Platform and applies to your use of the Platform.</li>
+                  <li>Privacy Policy.  Our Privacy Policy describes the collection and use of personal information on the Platform which applies to your use of the Platform.</li>
               </ul>
             </div>
 
@@ -239,4 +239,4 @@ Thanks for reading.  Please enjoy our community!
       }
       
 
-export default HomePage
+export default Agreement

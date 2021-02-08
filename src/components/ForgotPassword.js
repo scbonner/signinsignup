@@ -26,7 +26,6 @@ export default function ForgotPassword() {
         setError('Failed to reset password')
     }
     console.log("is working")
-    
      setLoading(false)
 
 }   

@@ -4,63 +4,74 @@ import { useAuth } from '../contexts/AuthContext'
 import { Link, useHistory } from 'react-router-dom'
 
 
-export default function Signup() {
+export default function UpdateProfile() {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
-    const { signup } = useAuth()
+    const { currentUser, updateEmail, updatePassword } = useAuth()
     const [error, setError] = useState("")
-    const [loading, setLoading] = useState(false)  //set state because we are not loadin it is set to false
+    const [loading, setLoading] = useState(false)  
     const history = useHistory()
 
-    async function handleSubmit(e) {
-        //prevents screen form from refreshing
+    function handleSubmit(e) {
+       // prevents screen form from refreshing
         e.preventDefault()
     
         if (passwordRef.current.value !== 
         passwordConfirmRef.current.value) {
-            return setError('Failed to create an account')
+            return setError('Passwords do not match')
      }
 
-      try {
-        setError("")
-        setLoading(true)
-        await signup(emailRef.current.value, passwordRef.current.value)
-        history.push('/')
-      } catch {
-        setError('Failed to create an account')
+    const promises = []
+    setLoading(true)
+    setError("")
+    if (emailRef.current.value !== currentUser.email) {
+        promises.push(updateEmail(emailRef.current.value))
     }
 
-     setLoading(false)
+    if (passwordRef.current.value) {
+        promises.push(updatePassword(passwordRef.current.value))
+    }
+
+    Promise.all(promises).then(() => {
+        history.push('/')
+    }).catch(() => {
+        setError("Failed to update account")
+    }).finally(() => {
+        setLoading(false)
+    })
+
+   
 }   
     return (
         <>
             <Card>
                 <Card.Body>
-                    <h2 className='text-center mb-4'>Sign Up</h2>
+                    <h2 className='text-center mb-4'>Update Profile</h2>
                     {/* {currentUser.email} */}
                     {/* {JSON.stringify(currentUser)} */}
                     {error && <Alert variant='danger'>{error}</Alert>} 
                         <Form onSubmit={handleSubmit}>
                         <Form.Group id='email'>
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type='email' ref={emailRef} required />
+                            <Form.Control type='email' ref={emailRef} required defaultValue={currentUser.email} />
                         </Form.Group>
                         <Form.Group id='password'>
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type='password' ref={passwordRef} required />
+                            <Form.Control type='password' ref={passwordRef} required placeholder='Leave blank to keep the same' />
                         </Form.Group>
                         <Form.Group id='confirm-password'>
                             <Form.Label>Password Confirmation</Form.Label>
                             <Form.Control type='password' ref={passwordConfirmRef} required />
                         </Form.Group>
-                        <Button disable={loading} className='w-100' type='submit'>Sign Up</Button>
+                        <Button disable={loading} className='w-100' type='submit'>Update</Button>
                         </Form>
                 </Card.Body>
             </Card>
             <div className='w-100 text-center mt-2'>
-                Already have an account?  <Link to='/login'>Log In</Link>
+                <Link to='/'></Link>
             </div>
         </>
     )
 }
+
